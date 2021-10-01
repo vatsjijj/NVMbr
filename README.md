@@ -24,6 +24,7 @@ puts "Hello, world!".
 ```
 % Simple recursive function, imagine
 % something like a for or while loop.
+
 func recurse(n) do
   puts n.
   
