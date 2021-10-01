@@ -1,0 +1,7 @@
+% This function multiplies 2 numbers.
+
+func mul(x, y) do
+  puts x * y.
+end
+
+mul(7, 10).

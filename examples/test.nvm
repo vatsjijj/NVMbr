@@ -1,0 +1,8 @@
+func outer() do
+	var x <- "outside".
+	def inner() do
+		puts x.
+	end
+	inner().
+end
+outer().

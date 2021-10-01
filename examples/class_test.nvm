@@ -1,0 +1,14 @@
+class CoffeeMaker [
+  init(coffee) do
+    this:coffee <- coffee.
+  end
+
+  brew() do
+    puts "Enjoy some of this " + this:coffee.
+
+    this:coffee <- nil.
+  end
+]
+
+set maker <- CoffeeMaker("coffee and chicory").
+maker:brew().

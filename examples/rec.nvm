@@ -1,0 +1,6 @@
+func rec(n) do
+  puts n.
+  if (n > 0) return rec(n - 1).
+end
+
+rec(5).

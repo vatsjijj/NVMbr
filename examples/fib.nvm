@@ -1,0 +1,8 @@
+func fib(n) do
+	if (n < 2) return n.
+	return fib(n - 2) + fib(n - 1).
+end
+
+set start <- clock().
+puts fib(2).
+puts clock() - start.
