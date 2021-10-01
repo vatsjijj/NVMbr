@@ -2,12 +2,14 @@ exec = nvmbrc
 CC = gcc
 sources = $(wildcard src/*.c)
 objects = $(sources:.c=.o)
-flags = -Wall -fPIC -rdynamic -O2
+flags = -Wall -fPIC -O2
 
 ifeq ($(OS), Windows_NT)
 	RM_COM = del
+	delsrc = del src\*.o
 else
 	RM_COM = rm -v
+	delsrc = rm -v src/*.o
 endif
 
 $(exec): $(objects)
@@ -18,4 +20,4 @@ $(exec): $(objects)
 
 clean:
 	$(RM_COM) nvmbrc*
-	$(RM_COM) src/*.o
+	$(delsrc)
