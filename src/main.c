@@ -9,6 +9,9 @@
 static void repl() {
 	char line[1024];
 
+	printf("Welcome to the NVMbr REPL\n");
+	printf("Version 0.0.2 \"Nouveau\"\n\n");
+
 	for (;;) {
 		printf("[ repl ] -> ");
 
@@ -55,7 +58,7 @@ static char* io_read_file(const char* path) {
 static void io_file_run(const char* path) {
 	char* src = io_read_file(path);
 	InterpResult result = interp(src);
-	
+
 	free(src);
 
 	if (result == INTERP_COMPILE_ERR) exit(65);
