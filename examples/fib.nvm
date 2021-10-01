@@ -4,5 +4,5 @@ func fib(n) do
 end
 
 set start <- clock().
-puts fib(2).
+puts fib(35).
 puts clock() - start.
