@@ -23,6 +23,12 @@ $(exec): $(OBJ)
 %.o: %.c include/%.h
 	$(CC) -c $(FLAGS) $< -o $@
 
+crossbuild:
+	# Specifically made to run for
+	# cross platform compilation on
+	# Linux.
+	x86_64-w64-mingw32-gcc src/*.c -o nvmbrc.exe
+
 clean:
 	$(RM_COM) nvmbrc*
 	$(DELSRC)
