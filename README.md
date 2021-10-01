@@ -46,3 +46,27 @@ set start <- clock().
 puts fib(35).
 puts clock() - start.
 ```
+
+## Installation
+### Linux
+Ensure at least GCC 10.3.0, Make 4.3, and Git is installed.
+
+```
+git clone https://www.github.com/vatsjijj/NVMbr.git
+cd NVMbr/
+sudo make install
+```
+You can run NVMbr by typing `nvmbrc` in your terminal.
+
+You can uninstall NVMbr by running `sudo make uninstall`.
+### Windows
+Ensure [MinGW-w64](https://www.mingw-w64.org/), [Make](https://community.chocolatey.org/packages/make), and [Git](https://git-scm.com/download/win) is installed.
+
+**In Command Prompt**
+
+```
+git clone https://www.github.com/vatsjijj/NVMbr.git
+cd NVMbr
+make
+```
+You can run NVMbr by typing `nvmbrc.exe` in your Command Prompt.

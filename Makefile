@@ -1,23 +1,36 @@
 exec = nvmbrc
 CC = gcc
-sources = $(wildcard src/*.c)
-objects = $(sources:.c=.o)
-flags = -Wall -fPIC -O2
+UNAME_S = uname -s
+SRC = $(wildcard src/*.c)
+OBJ = $(SRC:.c=.o)
+FLAGS = -Wall -fPIC -O2
 
 ifeq ($(OS), Windows_NT)
 	RM_COM = del
-	delsrc = del src\*.o
+	DELSRC = del src\*.o
+	INST = echo "Cannot run `make install` on Windows."
+	UNINST = echo "Run `del nvmbrc.exe` instead."
 else
 	RM_COM = rm -v
-	delsrc = rm -v src/*.o
+	DELSRC = rm -v src/*.o
+	INST = cp nvmbrc /usr/bin
+	UNINST = rm -v /usr/bin/nvmbrc
 endif
 
-$(exec): $(objects)
-	$(CC) $(objects) $(flags) -o $(exec)
+$(exec): $(OBJ)
+	$(CC) $(OBJ) $(FLAGS) -o $(exec)
 
 %.o: %.c include/%.h
-	$(CC) -c $(flags) $< -o $@
+	$(CC) -c $(FLAGS) $< -o $@
 
 clean:
 	$(RM_COM) nvmbrc*
-	$(delsrc)
+	$(DELSRC)
+
+install:	
+	$(INST)
+
+uninstall:	
+	$(RM_COM) nvmbrc*
+	$(DELSRC)
+	$(UNINST)
