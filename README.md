@@ -1,8 +1,8 @@
-#NVMbr
-##What is NVMbr?
+# NVMbr
+## What is NVMbr?
 NVMbr stands for **"NVMbr Virtual Machine"** which is a **dynamically typed** programming language, with unique syntax, and written on top of a completely _custom_ VM.
 
-##Features
+## Features
 - REPL
 - Concurrent-Mark-Sweep Garbage Collection
 - Recursion
@@ -16,7 +16,7 @@ NVMbr stands for **"NVMbr Virtual Machine"** which is a **dynamically typed** pr
 - Classes
 - Inheritance
 
-##Samples
+## Samples
 ```
 % Hello world, obviously.
 puts "Hello, world!".
