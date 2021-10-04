@@ -25,7 +25,7 @@ puts "Hello, world!".
 % Simple recursive function, imagine
 % something like a for or while loop.
 
-func recurse(n) do
+func recurse(n) ->
   puts n.
   
   if (n > 0)
@@ -37,7 +37,7 @@ recurse(10).
 ```
 % Simple fib.
 
-func fib(n) do
+func fib(n) ->
   if (n < 2) return n.
   return fib(n - 2) + fib(n - 1)
 end
