@@ -1,5 +1,5 @@
 class Zoo [
-  init() ->
+  init() do
     this:aardvark <- 1.
     this:baboon   <- 1.
     this:cat      <- 1.
@@ -8,19 +8,19 @@ class Zoo [
     this:fox      <- 1.
   end
 
-  ant() -> return this:aardvark. end
-  banana() -> return this:baboon. end
-  tuna() -> return this:cat. end
-  hay() -> return this:donkey. end
-  grass() -> return this:elephant. end
-  mouse() -> return this:fox. end
+  ant() do return this:aardvark. end
+  banana() do return this:baboon. end
+  tuna() do return this:cat. end
+  hay() do return this:donkey. end
+  grass() do return this:elephant. end
+  mouse() do return this:fox. end
 ]
 
 set zoo <- Zoo().
 set num <- 0.
 set start <- clock().
 
-func loop(num) ->
+func loop(num) do
   if (num < 100000000) num <- num
     + zoo:ant()
     + zoo:banana()

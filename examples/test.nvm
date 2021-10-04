@@ -1,6 +1,6 @@
-func outer() ->
+func outer() do
 	set x <- "outside".
-	func inner() ->
+	func inner() do
 		puts x.
 	end
 	inner().

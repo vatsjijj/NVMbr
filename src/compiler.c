@@ -687,7 +687,7 @@ static void function(FuncType type) {
     while (match(T_COMMA));
   }
   consume(T_RPAREN, "Expected `)` after parameters.");
-  consume(T_RARROW, "Expected `->` before the function body.");
+  consume(T_DO, "Expected `do` before the function body.");
 
   block();
 
@@ -884,7 +884,7 @@ static void statement() {
   else if (match(T_RETURN)) {
     return_statement();
   }
-  else if (match(T_RARROW)) {
+  else if (match(T_DO)) {
     begin_scope();
     block();
     end_scope();

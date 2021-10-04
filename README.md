@@ -25,9 +25,9 @@ puts "Hello, world!".
 % Simple recursive function, imagine
 % something like a for or while loop.
 
-func recurse(n) ->
+func recurse(n) do
   puts n.
-  
+
   if (n > 0)
     return recurse(n - 1).
 end
@@ -37,7 +37,7 @@ recurse(10).
 ```
 % Simple fib.
 
-func fib(n) ->
+func fib(n) do
   if (n < 2) return n.
   return fib(n - 2) + fib(n - 1).
 end
@@ -45,6 +45,26 @@ end
 set start <- clock().
 puts fib(35).
 puts clock() - start.
+```
+```
+% Superclass example.
+
+class Doughnut [
+  cook() do
+    puts "Dunk in the fryer.".
+    this:finish("sprinkles").
+  end
+
+  finish(ingredient) do
+    puts "Finish with " + ingredient.
+  end
+]
+
+class Cruller < Doughnut [
+  finish(ingredient) do
+    super:finish("icing").
+  end
+]
 ```
 
 ## Installation

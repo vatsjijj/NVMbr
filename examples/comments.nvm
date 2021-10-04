@@ -1,6 +1,6 @@
 % This function multiplies 2 numbers.
 
-func mul(x, y) ->
+func mul(x, y) do
   puts x * y.
 end
 

@@ -30,13 +30,13 @@ crossbuild:
 	x86_64-w64-mingw32-gcc src/*.c -o nvmbrc.exe
 
 clean:
-	$(RM_COM) nvmbrc*
 	$(DELSRC)
+	$(RM_COM) nvmbrc*
 
-install:	
+install:
 	$(INST)
 
-uninstall:	
+uninstall:
 	$(RM_COM) nvmbrc*
 	$(DELSRC)
 	$(UNINST)
