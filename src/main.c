@@ -10,7 +10,7 @@ static void repl() {
 	char line[1024];
 
 	printf("Welcome to the NVMbr REPL\n");
-	printf("Version 0.0.2 \"Nouveau\"\n\n");
+	printf("Version 0.0.3 \"Columbus\"\n\n");
 
 	for (;;) {
 		printf("[ repl ] -> ");

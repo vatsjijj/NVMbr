@@ -1,9 +1,9 @@
 class CoffeeMaker [
-  init(coffee) do
+  init(coffee) ->
     this:coffee <- coffee.
   end
 
-  brew() do
+  brew() ->
     puts "Enjoy some of this " + this:coffee.
 
     this:coffee <- nil.

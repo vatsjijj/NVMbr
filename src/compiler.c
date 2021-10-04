@@ -595,6 +595,7 @@ ParseRule rules[] = {
   [T_BANG]          = {unary,    NULL,   PREC_NONE},
   [T_BANG_EQU]      = {NULL,     bin,    PREC_EQU},
   [T_EQU]           = {NULL,     NULL,   PREC_NONE},
+  [T_TILDE]         = {NULL,     NULL,   PREC_NONE},
   [T_LARROW]        = {NULL,     NULL,   PREC_NONE},
   [T_RARROW]        = {NULL,     NULL,   PREC_NONE},
   [T_EQU_EQU]       = {NULL,     bin,    PREC_EQU},
@@ -686,7 +687,7 @@ static void function(FuncType type) {
     while (match(T_COMMA));
   }
   consume(T_RPAREN, "Expected `)` after parameters.");
-  consume(T_DO, "Expected `do` before the function body.");
+  consume(T_RARROW, "Expected `->` before the function body.");
 
   block();
 
@@ -883,7 +884,7 @@ static void statement() {
   else if (match(T_RETURN)) {
     return_statement();
   }
-  else if (match(T_DO)) {
+  else if (match(T_RARROW)) {
     begin_scope();
     block();
     end_scope();
@@ -915,7 +916,7 @@ ObjFunc* compile(const char* src) {
 
 void mark_compiler_root() {
   Compiler* compiler = current;
-  
+
   while (compiler != NULL) {
     mark_obj((Obj*)compiler->function);
     compiler = compiler->enclosing;

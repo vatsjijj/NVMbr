@@ -38,6 +38,6 @@ int add_const(Chunk* chunk, Value value) {
 	push(value);
 	write_val_arr(&chunk->constants, value);
 	pop();
-	
+
 	return chunk->constants.count - 1;
 }

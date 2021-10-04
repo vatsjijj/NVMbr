@@ -1,16 +1,16 @@
 class Doughnut [
-  cook() do
+  cook() ->
     puts "Dunk in the fryer.".
     this:finish("sprinkles").
   end
 
-  finish(ingredient) do
+  finish(ingredient) ->
     puts "Finish with " + ingredient.
   end
 ]
 
 class Cruller < Doughnut [
-  finish(ingredient) do
+  finish(ingredient) ->
     super:finish("icing").
   end
 ]

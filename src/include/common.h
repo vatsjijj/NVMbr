@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 /*
-  Enables the "nouveau" (post 0.0.2) style of NVM.
+  Enables the "nouveau" (0.0.2) style of NVM.
   Disable this for the old style (pre 0.0.2) of NVM,
   which is applicable in certain edge cases.
 */

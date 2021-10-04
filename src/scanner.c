@@ -148,7 +148,6 @@ static TokenType ident_type() {
         }
       }
       break;
-    //case 'v': return check_keyword(1, 2, "ar", T_VAR);
     case 'w': return check_keyword(1, 4, "hile", T_WHILE);
   }
   return T_IDENT;
@@ -186,7 +185,7 @@ Token scan_token() {
   skip_wspc();
 
   scanner.start = scanner.current;
-  
+
   if (at_end()) return make_token(T_EOS);
 
   char c = adv();
@@ -208,6 +207,7 @@ Token scan_token() {
     case '+': return make_token(T_PLUS);
     case '/': return make_token(T_SLASH);
     case '*': return make_token(T_STAR);
+    case '~': return make_token(T_TILDE);
 
     case '-':
       return make_token(match('>') ? T_RARROW : T_MINUS);

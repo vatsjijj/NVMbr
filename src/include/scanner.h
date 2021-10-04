@@ -16,6 +16,7 @@ typedef enum {
   T_COLON,
   T_SLASH,
   T_STAR,
+  T_TILDE,
 
   // One/two character.
   T_MINUS,

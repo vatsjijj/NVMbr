@@ -1,4 +1,4 @@
-func rec(n) do
+func rec(n) ->
   puts n.
   if (n > 0) return rec(n - 1).
 end
