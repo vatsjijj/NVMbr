@@ -77,6 +77,22 @@ class Cruller < Doughnut [
   end
 ]
 ```
+```
+% Match statement.
+
+set x <- 3.
+
+match (x) do
+  case 1 ->
+    puts "I'm number 1!".
+  case 2 ->
+    puts "...I don't like that 1 guy.".
+  case 3 ->
+    puts "Those two are annoying!".
+  ~ ->
+    puts "...I'm the default.".
+end
+```
 
 ## Installation
 ### Linux

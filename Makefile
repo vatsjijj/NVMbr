@@ -37,6 +37,6 @@ install:
 	$(INST)
 
 uninstall:
-	$(RM_COM) nvmbrc*
 	$(DELSRC)
+	$(RM_COM) nvmbrc*
 	$(UNINST)
