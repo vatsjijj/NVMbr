@@ -74,6 +74,7 @@ Ensure at least GCC 10.3.0, Make 4.3, and Git is installed.
 ```
 git clone https://www.github.com/vatsjijj/NVMbr.git
 cd NVMbr/
+make
 sudo make install
 ```
 You can run NVMbr by typing `nvmbrc` in your terminal.
