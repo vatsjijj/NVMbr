@@ -16,6 +16,17 @@ NVMbr stands for **"NVMbr Virtual Machine"** which is a **dynamically typed** pr
 - Classes
 - Inheritance
 
+## Goals
+- Library support
+- Header file support (`.nvmh`)
+- Improved syntax
+- Module support
+- Functional style of programming
+- Arrays
+- Tuples
+- Lists
+- Fault-Tolerant
+
 ## Samples
 ```
 % Hello world, obviously.
