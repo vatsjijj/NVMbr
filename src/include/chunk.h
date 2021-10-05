@@ -5,6 +5,7 @@
 
 typedef enum {
 	OP_CONSTANT,
+  OP_CONSTANT_LONG,
 	OP_NIL,
 	OP_TRUE,
 	OP_FALSE,
@@ -23,6 +24,7 @@ typedef enum {
 	OP_LESS,
 	OP_LARROW,
 	OP_GREATER,
+	OP_DUP,
 	OP_ADD,
 	OP_SUB,
 	OP_MUL,
@@ -44,16 +46,25 @@ typedef enum {
 } OpCode;
 
 typedef struct {
+	int offset;
+	int line;
+} LineStart;
+
+typedef struct {
 	int count;
 	int capacity;
 	uint8_t* code;
-	int* lines;
+  int line_count;
+  int line_capacity;
+	LineStart* lines;
 	ValueArray constants;
 } Chunk;
 
 void init_chunk(Chunk* chunk);
 void free_chunk(Chunk* chunk);
 void write_chunk(Chunk* chunk, uint8_t byte, int line);
+void write_const(Chunk* chunk, Value value, int line);
 int add_const(Chunk* chunk, Value value);
+int get_line(Chunk* chunk, int instruct);
 
 #endif

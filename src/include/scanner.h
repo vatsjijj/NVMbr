@@ -55,7 +55,9 @@ typedef enum {
   T_WHILE,
   T_DO,
   T_END,
-  T_NL,
+  T_CASE,
+  T_DEFAULT,
+  T_MATCH,
 
   T_ERR,
   T_EOS,

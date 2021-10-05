@@ -108,7 +108,14 @@ static TokenType check_keyword(int start, int length, const char* rest, TokenTyp
 static TokenType ident_type() {
   switch (scanner.start[0]) {
     case 'a': return check_keyword(1, 2, "nd", T_AND);
-    case 'c': return check_keyword(1, 4, "lass", T_CLASS);
+    case 'c':
+      if (scanner.current - scanner.start > 1) {
+        switch (scanner.start[1]) {
+          // Funny ass joke.
+          case 'l': return check_keyword(2, 3, "ass", T_CLASS);
+          case 'a': return check_keyword(2, 2, "se", T_CASE);
+        }
+      }
     case 'd': return check_keyword(1, 1, "o", T_DO);
     case 'e':
       if (scanner.current - scanner.start > 1) {
@@ -128,6 +135,7 @@ static TokenType ident_type() {
       }
       break;
     case 'i': return check_keyword(1, 1, "f", T_IF);
+    case 'm': return check_keyword(1, 4, "atch", T_MATCH);
     case 'n': return check_keyword(1, 2, "il", T_NIL);
     case 'o': return check_keyword(1, 1, "r", T_OR);
     case 'p': return check_keyword(1, 3, "uts", T_PRINT);

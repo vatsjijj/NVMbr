@@ -21,6 +21,18 @@ static int const_instruct(const char* name, Chunk* chunk, int offset) {
   return offset + 2;
 }
 
+static int long_const_instruct(const char* name, Chunk* chunk, int offset) {
+  uint32_t constant = chunk->code[offset + 1] |
+    (chunk->code[offset + 2] << 8) |
+    (chunk->code[offset + 3] << 16);
+
+  printf("%-16s %4d `", name, constant);
+  print_val(chunk->constants.values[constant]);
+  printf("`\n");
+
+  return offset + 4;
+}
+
 static int invoke_instruct(const char* name, Chunk* chunk, int offset) {
   uint8_t constant = chunk->code[offset + 1];
   uint8_t arg_count = chunk->code[offset + 2];
@@ -58,11 +70,13 @@ static int jump_instruct(const char* name, int sign, Chunk* chunk, int offset) {
 int disassemble_instruct(Chunk* chunk, int offset) {
   printf("%04d ", offset);
 
-  if (offset > 0 && chunk->lines[offset] == chunk->lines[offset - 1]) {
+  int line = get_line(chunk, offset);
+
+  if (offset > 0 && line == get_line(chunk, offset - 1)) {
     printf("    | ");
   }
   else {
-    printf("%4d ", chunk->lines[offset]);
+    printf("%4d ", line);
   }
 
   uint8_t instruct = chunk->code[offset];
@@ -70,6 +84,8 @@ int disassemble_instruct(Chunk* chunk, int offset) {
   switch (instruct) {
     case OP_CONSTANT:
       return const_instruct("CONSTANT", chunk, offset);
+    case OP_CONSTANT_LONG:
+      return long_const_instruct("CONSTANT_LONG", chunk, offset);
     case OP_NIL:
       return simple_instruct("NIL", offset);
     case OP_TRUE:

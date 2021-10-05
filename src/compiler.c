@@ -6,6 +6,8 @@
 #include "include/scanner.h"
 #include "include/memory.h"
 
+#define MAX_CASES 256
+
 #ifdef DEBUG_PRINT_CODE
 #include "include/debug.h"
 #endif
@@ -606,6 +608,8 @@ ParseRule rules[] = {
   [T_IDENT]         = {variable, NULL,   PREC_NONE},
   [T_STRING]        = {string,   NULL,   PREC_NONE},
   [T_NUM]           = {num,      NULL,   PREC_NONE},
+  [T_CASE]          = {NULL,     NULL,   PREC_NONE},
+  [T_MATCH]         = {NULL,     NULL,   PREC_NONE},
   [T_AND]           = {NULL,     and_,   PREC_AND},
   [T_CLASS]         = {NULL,     NULL,   PREC_NONE},
   [T_ELSE]          = {NULL,     NULL,   PREC_NONE},
@@ -833,6 +837,66 @@ static void return_statement() {
   }
 }
 
+static void match_statement() {
+  consume(T_LPAREN, "Expected `(` after `match`.");
+  expr();
+  consume(T_RPAREN, "Expected `)` after value.");
+  consume(T_DO, "Expected `do` before cases.");
+
+  int state = 0;
+  int case_ends[MAX_CASES];
+  int case_count = 0;
+  int prev_case_skip = -1;
+
+  while (!match(T_END) && !check(T_EOS)) {
+    if (match(T_CASE) || match(T_TILDE)) {
+      TokenType case_type = parser.prev.type;
+
+      if (state == 2) {
+        error("Cannot have another case or default after the default case.");
+      }
+
+      if (state == 1) {
+        case_ends[case_count++] = rel_jump(OP_JUMP);
+        patch_jump(prev_case_skip);
+        rel_byte(OP_POP);
+      }
+
+      if (case_type == T_CASE) {
+        state = 1;
+        rel_byte(OP_DUP);
+        expr();
+
+        consume(T_RARROW, "Expected `->` after case value.");
+
+        rel_byte(OP_EQU);
+        prev_case_skip = rel_jump(OP_JUMP_IF_FALSE);
+
+        rel_byte(OP_POP);
+      }
+      else {
+        state = 2;
+        consume(T_RARROW, "Expected `->` after the default.");
+        prev_case_skip = -1;
+      }
+    }
+    else {
+      if (state == 0) {
+        error("Cannot have statements before case.");
+      }
+      statement();
+    }
+  }
+  if (state == 1) {
+    patch_jump(prev_case_skip);
+    rel_byte(OP_POP);
+  }
+  for (int i = 0; i < case_count; i++) {
+    patch_jump(case_ends[i]);
+  }
+  rel_byte(OP_POP);
+}
+
 static void sync() {
   parser.panic = false;
 
@@ -888,6 +952,9 @@ static void statement() {
     begin_scope();
     block();
     end_scope();
+  }
+  else if (match(T_MATCH)) {
+    match_statement();
   }
   else {
     expr_statement();

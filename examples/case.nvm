@@ -1,0 +1,14 @@
+set x <- 1.
+
+match (x) do
+  case 1 ->
+    puts "hello!".
+  case 2 ->
+    puts "world!".
+  case 3 ->
+    puts "ummm...".
+  case 4 ->
+    puts "this has gone too far!".
+  ~ ->
+    puts "hey, im the default!".
+end
