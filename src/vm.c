@@ -463,7 +463,7 @@ static InterpResult run() {
       case OP_SUB:      BINARY_OP(NUM_VAL, -); break;
       case OP_MUL:      BINARY_OP(NUM_VAL, *); break;
       case OP_DIV:      BINARY_OP(NUM_VAL, /); break;
-      case OP_DUP: push(peek(0)); break;
+      case OP_DUP:      push(peek(0)); break;
       case OP_NOT:
         push(BOOL_VAL(is_false(pop())));
         break;

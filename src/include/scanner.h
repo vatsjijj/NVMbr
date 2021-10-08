@@ -17,6 +17,7 @@ typedef enum {
   T_SLASH,
   T_STAR,
   T_TILDE,
+  T_QMARK,
 
   // One/two character.
   T_MINUS,

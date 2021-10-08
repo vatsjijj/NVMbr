@@ -216,6 +216,7 @@ Token scan_token() {
     case '/': return make_token(T_SLASH);
     case '*': return make_token(T_STAR);
     case '~': return make_token(T_TILDE);
+    case '?': return make_token(T_QMARK);
 
     case '-':
       return make_token(match('>') ? T_RARROW : T_MINUS);

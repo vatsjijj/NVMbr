@@ -423,7 +423,7 @@ static void bin(bool can_assign) {
     case T_LESS:        rel_byte(OP_LESS); break;
     case T_LESS_EQU:    rel_bytes(OP_GREATER, OP_NOT); break;
     case T_PLUS:        rel_byte(OP_ADD); break;
-    case T_MINUS:       rel_byte(OP_SUB); break;
+    case T_MINUS:       rel_bytes(OP_NEGATE, OP_ADD); break;
     case T_STAR:        rel_byte(OP_MUL); break;
     case T_SLASH:       rel_byte(OP_DIV); break;
     default: return;
@@ -598,6 +598,7 @@ ParseRule rules[] = {
   [T_BANG_EQU]      = {NULL,     bin,    PREC_EQU},
   [T_EQU]           = {NULL,     NULL,   PREC_NONE},
   [T_TILDE]         = {NULL,     NULL,   PREC_NONE},
+  [T_QMARK]         = {NULL,     NULL,   PREC_NONE},
   [T_LARROW]        = {NULL,     NULL,   PREC_NONE},
   [T_RARROW]        = {NULL,     NULL,   PREC_NONE},
   [T_EQU_EQU]       = {NULL,     bin,    PREC_EQU},
