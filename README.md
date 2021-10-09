@@ -118,3 +118,7 @@ cd NVMbr
 make
 ```
 You can run NVMbr by typing `nvmbrc.exe` in your Command Prompt.
+
+<br><hr><br>
+<p align="center"><i>Something is coming in the future...<i></p>
+<p align="center"><i>Something <b>big</b>...</i></p>
