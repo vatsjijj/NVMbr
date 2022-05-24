@@ -120,4 +120,4 @@ make
 You can run NVMbr by typing `nvmbrc.exe` in your Command Prompt.
 
 <br><hr><br>
-**NVMbr is being completely rewritten. Just thought I should mention that.**
+**NVMbr is a dead project. You can use Udin instead.**
